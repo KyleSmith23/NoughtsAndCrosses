@@ -2,7 +2,7 @@
 using System.Drawing;
 
 Board board = new();
-Board.CreateBoard();
+Board.ShowBoard();
 
 Console.WriteLine("Player 1, what is your name?");
 string playerName1 = Console.ReadLine();
@@ -14,16 +14,19 @@ Player player2 = new(playerName1);
 
 while(true)
 {
-    Console.WriteLine("Player 1, choose postion..");
+    string playerTurn = "X";
+    Console.WriteLine($"{playerTurn}, choose postion..");
     int position = Convert.ToInt32(Console.ReadLine());
 
-    Board.AddPosition(position);
-    Board.CreateBoard();
+    Board.AddPosition(position, playerTurn);
+    Board.ShowBoard();
 
-    Console.WriteLine("Player 2, choose postion..");
-    int position2 = Convert.ToInt32(Console.ReadLine());
-    Board.AddPosition2(position2);
-    Board.CreateBoard();
+    playerTurn = "O";
+    Console.WriteLine($"{playerTurn}, choose postion..");
+    position = Convert.ToInt32(Console.ReadLine());
+    
+    Board.AddPosition(position, playerTurn);
+    Board.ShowBoard();
 
 }
 
@@ -36,7 +39,7 @@ public class Board
     public static string[] midRow = { " ", " ", " ", "|", " ", " ", " ", "|", " ", " ", " " };
     public static string[] botRow = { " ", " ", " ", "|", " ", " ", " ", "|", " ", " ", " " };
     public static string[] dashRow = { "-", "-", "-", "+", "-", "-", "-", "+", "-", "-", "-", };
-    public static void CreateBoard()
+    public static void ShowBoard()
     {
         foreach (string position in topRow) { Console.Write(position); }
         Console.WriteLine();
@@ -50,36 +53,36 @@ public class Board
         Console.WriteLine();
     }
 
-    public static void AddPosition(int position)
+    public static void AddPosition(int position, string playerTurn)
     {
         switch (position) { 
             
             case 1:
-                if (topRow[1] == " ") topRow[1] = "X"; 
+                if (topRow[1] == " ") topRow[1] = $"{playerTurn}"; 
                 break;
             case 2:
-                if (topRow[5] == " ") topRow[5] = "X";
+                if (topRow[5] == " ") topRow[5] = $"{playerTurn}";
                 break;
             case 3:
-                if (topRow[9] == " ") topRow[9] = "X";
+                if (topRow[9] == " ") topRow[9] = $"{playerTurn}";
                 break;
             case 4:
-                if (midRow[1] == " ") midRow[1] = "X";
+                if (midRow[1] == " ") midRow[1] = $"{playerTurn}";
                 break;
             case 5:
-                if (midRow[5] == " ") midRow[5] = "X";
+                if (midRow[5] == " ") midRow[5] = $"{playerTurn}";
                 break;
             case 6:
-                if (midRow[9] == " ") midRow[9] = "X";
+                if (midRow[9] == " ") midRow[9] = $"{playerTurn}";
                 break;
             case 7:
-                if (botRow[1] == " ") botRow[1] = "X";
+                if (botRow[1] == " ") botRow[1] = $"{playerTurn}";
                 break;
             case 8:
-                if (botRow[5] == " ") botRow[5] = "X";
+                if (botRow[5] == " ") botRow[5] = $"{playerTurn}";
                 break;
             case 9:
-                if (botRow[9] == " ") botRow[9] = "X";
+                if (botRow[9] == " ") botRow[9] = $"{playerTurn}";
                 break;
 
         }
